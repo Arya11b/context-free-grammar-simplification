@@ -1,1 +1,5 @@
-Boo! it works
+S -> abS | abA | abB | C
+A -> cd
+B -> aB | acB | BB | d
+C -> dc
+D -> j
