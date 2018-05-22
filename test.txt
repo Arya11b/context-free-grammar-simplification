@@ -1,5 +1,4 @@
-S -> abS | abA | abB | C
-A -> cd
-B -> aB | acB | BB | d
-C -> dc
-D -> j
+S -> ABCd
+A -> BC
+B -> bB | 0
+C -> cC | 0

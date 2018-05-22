@@ -1,4 +1,14 @@
-S abS abA abB C
-A cd
-B aB acB BB d
-C dc
+S ABCd
+A BC
+B bB 0
+C cC 0
+S ACd
+S ABd
+A C
+A B
+ b 0
+ c 0
+S Ad
+S Ad
+A 
+A 

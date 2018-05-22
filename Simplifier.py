@@ -6,6 +6,7 @@ class context_free:
         self.split_grammer()
         self.trim_useless()
         self.trim_inf()
+        self.trim_lambda()
     def get_input(self):
         file = open("test.txt","r")
         return file.readlines()
@@ -32,6 +33,23 @@ class context_free:
                     if temp.find(self.get_expression(rule)) != -1:
                         temp_r.remove(temp)
                 self.rules[0] = " ".join(temp_r)
+    def trim_lambda(self):
+        vn = []
+        for rule in self.rules:
+            length = -1
+            literals = rule.split()
+            for literal in literals:
+                    if '0' in literal or self.char_in_list(vn,literal):
+                        if literals[0] not in vn:
+                            vn.append(literals[0])
+        for rule in self.rules:
+            literals = rule.split()
+            for literal in literals[1:]:
+                for v in vn:
+                    if v in literal or '0' in literal:
+                        temp = rule.replace(v,'')
+                        self.rules.append(temp)
+
     def get_expression(self,rule):
         return rule[0]
     def print_rules(self):
@@ -40,6 +58,11 @@ class context_free:
         file = open("results.txt","w+")
         lines = [x+"\n" for x in self.rules]
         file.writelines(lines)
+    def char_in_list(self,li,st):
+        for ch in st:
+            if ch in li:
+                return True
+        return False
 c = context_free()
 c.print_rules()
 c.save_results()
