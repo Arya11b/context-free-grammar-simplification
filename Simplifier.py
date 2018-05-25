@@ -34,22 +34,38 @@ class context_free:
                         temp_r.remove(temp)
                 self.rules[0] = " ".join(temp_r)
     def trim_lambda(self):
-        vn = []
-        for rule in self.rules:
-            length = -1
-            literals = rule.split()
-            for literal in literals:
-                    if '0' in literal or self.char_in_list(vn,literal):
-                        if literals[0] not in vn:
-                            vn.append(literals[0])
+        vn = ['0']
+        for i in range(len(self.rules)):
+            for rule in self.rules:
+                literals = rule.split()
+                for literal in literals[1:]:
+                        if self.char_in_list(vn,literal):
+                            if literals[0] not in vn:
+                                vn.append(literals[0])
         for rule in self.rules:
             literals = rule.split()
             for literal in literals[1:]:
                 for v in vn:
-                    if v in literal or '0' in literal:
-                        temp = rule.replace(v,'')
-                        self.rules.append(temp)
-
+                    if v in literal:
+                        temp = rule[0] + rule[1:].replace(v, '')
+                        if temp not in self.rules:self.rules.append(temp)
+        # delete rules with zeros
+        i=0
+        while i<len(self.rules):
+            if '0' in self.rules[i]:
+                self.rules.pop(i)
+            else: i+=1
+        self.unify()
+    def unify(self):
+        v=[]
+        for rule in self.rules:
+            if rule[0] not in v:
+                v.append(rule[0])
+        for rule in self.rules:
+            for i in range(len(v)):
+                if rule[0] == v[i][0]:
+                    v[i]+= rule[1:]
+        self.rules = v
     def get_expression(self,rule):
         return rule[0]
     def print_rules(self):
