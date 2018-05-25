@@ -1,4 +1,4 @@
-S ABCd ACd ABd BCd Ad Cd Bd d
-A BC C B 
-B bB  b 
-C cC  c 
+S -> aAa | aBC
+A -> aS
+B -> aBa | b
+C -> abb
