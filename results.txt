@@ -1,4 +1,2 @@
-S -> aAa | aBC
-A -> aS
-B -> aBa | b
-C -> abb
+S -> Aa | a | b | f
+A -> b | a

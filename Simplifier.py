@@ -87,6 +87,15 @@ class context_free:
             for i in range(len(v)):
                 if rule[0] == v[i][0]:
                     v[i]+= rule[1:]
+        for i in range(len(v)):
+            literals = v[i].split()
+            j=1
+            while j<len(literals):
+                if literals[j] in literals[1:j]:
+                    literals.pop(j)
+                    v[i] = " ".join(literals)
+                else:
+                    j+=1
         self.rules = v
     def beautify(self):
         for i in range(len(self.rules)):
